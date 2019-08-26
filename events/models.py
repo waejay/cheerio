@@ -12,7 +12,7 @@ class Event(models.Model):
                                      null=True)
     region       = models.CharField(max_length=200, null=True)
     description  = models.TextField(null=True)
-    event_pw     = models.CharField(max_length=50, null=True, blank=True)
+    event_code   = models.CharField(max_length=50, null=True, blank=True)
     member       = models.ManyToManyField(get_user_model())
     
 

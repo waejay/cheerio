@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from datetime import datetime
 
 from users.models import CustomUser
 
@@ -27,10 +28,11 @@ class Event(models.Model):
 class Note(models.Model):
     first_name   = models.CharField(max_length=100, null=True)
     last_name    = models.CharField(max_length=100, null=True)
+    date_created = models.DateTimeField(default=datetime.now)
     content      = models.TextField()
     author       = models.CharField(max_length=200, default="Anon")
     event        = models.ForeignKey(Event, null=True, on_delete=models.CASCADE)
     num_of_likes = models.IntegerField(default=0)
-
+    
     def __str__(self):
         return self.content

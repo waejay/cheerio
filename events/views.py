@@ -26,12 +26,13 @@ def event_id(request, event_id):
 def join_event(request):
 
     event_code = request.POST['event-code']
-    events = Event.objects.filter(name=event_code)
+    events = Event.objects.filter(event_code=event_code)
 
     if not events:
+        print(f"event {event_code} does not exist")
         return redirect('/events')
 
-    event_to_join = Event.objects.get(name=event_code)
+    event_to_join = Event.objects.get(event_code=event_code)
     event_to_join.member.add(request.user)
 
 

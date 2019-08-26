@@ -3,85 +3,81 @@
 {% block content %}
 <!-- .page-title-bar -->
 <header class="page-title-bar">
-<!-- .d-flex -->
-<div class="d-flex justify-content-between align-items-center">
-  <!-- .breadcrumb -->
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active">
-        <a href="/"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Home</a>
-      </li>
-    </ol>
-  </nav><!-- /.breadcrumb -->
-  <button type="button" class="btn btn-light btn-icon d-xl-none" data-toggle="sidebar"><i class="fa fa-angle-double-left"></i></button>
-</div><!-- /.d-flex -->
-<!-- grid row -->
-<div class="row text-center text-sm-left">
-  <!-- grid column -->
-  <div class="col-sm-auto col-12 mb-2">
-  </div><!-- /grid column -->
-  <!-- grid column -->
-  <div class="col">
-    <h1 class="page-title"> My Events </h1>
-    <p class="text-muted"> Listed below are all of the events you joined or were added to. </p>
-  </div><!-- /grid column -->
-</div><!-- /grid row -->
-
-<form method="POST" action="/events/join/">
-{% csrf_token %}
-<div class="row mb-4">
-
-    <!-- .col -->
-    <div class="col-3">
-      <!-- .has-clearable -->
-      <div class="has-clearable">
-        	<button type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button> <input type="text" class="form-control" name="event-code" placeholder="Event Code">
-      </div><!-- /.has-clearable -->
-    </div><!-- /.col -->
-    <!-- .col-auto -->
-    <div class="col-auto">
-      <button class="btn btn-primary">Join Event</button>
-    </div><!-- /.col-auto -->
-  </div>
-</form>
-<!-- .page-section -->
-<div class="page-section">
-<!-- .section-block -->
-<div class="section-block">
-  
-
-{% for event in list_of_events %}
-<div class="card mb-2">
-    <!-- .card-body -->
-    <div class="card-body">
-      <!-- grid row -->
-      <div class="row align-items-center">
+    <!-- .d-flex -->
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- .breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">
+                    <a href="/"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Home</a>
+                </li>
+            </ol>
+        </nav><!-- /.breadcrumb -->
+        <button type="button" class="btn btn-light btn-icon d-xl-none" data-toggle="sidebar"><i class="fa fa-angle-double-left"></i></button>
+    </div><!-- /.d-flex -->
+    <!-- grid row -->
+    <div class="row text-center text-sm-left">
         <!-- grid column -->
-        <div class="col-auto">
-          <a href="#" class="user-avatar user-avatar-lg"><img src="{% static 'events/default.jpg' %}" alt=""> <span class="avatar-badge online" title="online"></span></a>
+        <div class="col-sm-auto col-12 mb-2">
         </div><!-- /grid column -->
         <!-- grid column -->
         <div class="col">
-          <h3 class="card-title">
-            <a href="/events/{{event.id}}">{{event.name}}</a> <small class="text-muted">{% if event.region %} {{event.region}} {% endif %}</small>
-          </h3>
-          <h6 class="card-subtitle text-muted"> {{event.description}} </h6>
+            <h1 class="page-title"> My Events </h1>
+            <p class="text-muted"> Listed below are all of the events you joined or were added to. </p>
         </div><!-- /grid column -->
-        <!-- /grid column -->
-        <div class="col-auto">
-          <!-- .dropdown -->
-          <div class="dropdown d-inline-block">
-            <button class="btn btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-fw fa-ellipsis-h"></i></button>
-            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: top, left; top: 36px; left: 36px;">
-              <div class="dropdown-arrow">
-              	<div class="dropdown-divider"></div><button type="button" class="dropdown-item">Remove</button>
-            	</div>
-          </div><!-- /.dropdown -->
-        </div><!-- /grid column -->
-      </div><!-- /grid row -->
-    </div><!-- /.card-body -->
-	</div><!-- /.card -->
-</div>
-{% endfor %}
- </div>
-{% endblock %}
+    </div><!-- /grid row -->
+    <form method="POST" action="/events/join/">
+        {% csrf_token %}
+        <div class="row mb-4">
+            <!-- .col -->
+            <div class="col-3">
+                <!-- .has-clearable -->
+                <div class="has-clearable">
+                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button> <input type="text" class="form-control" name="event-code" placeholder="Event Code">
+                </div><!-- /.has-clearable -->
+            </div><!-- /.col -->
+            <!-- .col-auto -->
+            <div class="col-auto">
+                <button class="btn btn-primary">Join Event</button>
+            </div><!-- /.col-auto -->
+        </div>
+    </form>
+    <!-- .page-section -->
+    <div class="page-section">
+        <!-- .section-block -->
+        <div class="section-block">
+            {% for event in list_of_events %}
+            <div class="card mb-2">
+                <!-- .card-body -->
+                <div class="card-body">
+                    <!-- grid row -->
+                    <div class="row align-items-center">
+                        <!-- grid column -->
+                        <div class="col-auto">
+                            <a href="#" class="user-avatar user-avatar-lg"><img src="{% static 'events/default.jpg' %}" alt=""> <span class="avatar-badge online" title="online"></span></a>
+                        </div><!-- /grid column -->
+                        <!-- grid column -->
+                        <div class="col">
+                            <h3 class="card-title">
+                                <a href="/events/{{event.id}}">{{event.name}}</a> <small class="text-muted">{% if event.region %} {{event.region}} {% endif %}</small>
+                            </h3>
+                            <h6 class="card-subtitle text-muted"> {{event.description}} </h6>
+                        </div><!-- /grid column -->
+                        <!-- /grid column -->
+                        <div class="col-auto">
+                            <!-- .dropdown -->
+                            <div class="dropdown d-inline-block">
+                                <button class="btn btn-icon btn-secondary" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-fw fa-ellipsis-h"></i></button>
+                                <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: top, left; top: 36px; left: 36px;">
+                                    <div class="dropdown-arrow">
+                                        <div class="dropdown-divider"></div><button type="button" class="dropdown-item">Remove</button>
+                                    </div>
+                                </div><!-- /.dropdown -->
+                            </div><!-- /grid column -->
+                        </div><!-- /grid row -->
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
+            {% endfor %}
+        </div>
+        {% endblock %}

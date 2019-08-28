@@ -11,4 +11,9 @@ urlpatterns = [
     path('events/', events_views.list_events, name="list_events"),
     path('events/<int:event_id>/', events_views.event_id, name="event_id"),
     path('events/join/', events_views.join_event, name="join_event"),
+    path('events/create/', events_views.create_event, name="create_event"),
+    path('events/create/submit', events_views.submit_created_event, name="submit-event"),
+    path('events/<int:event_id>/notes/create', events_views.create_note, name="create-note"),
+    path('events/<int:event_id>/notes/delete/<int:note_id>/', events_views.delete_note, name="delete_note"),
+    
 ]

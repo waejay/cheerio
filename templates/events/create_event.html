@@ -1,0 +1,34 @@
+{% extends 'my_cheerio/base.html' %}
+{% block content %}
+<div class="col-8">
+	<div id="labels" class="card">
+		<div class="card-body">
+		    <!-- .form -->
+		    <form method="POST" action="/events/create/submit">
+		    	{% csrf_token %}
+		        <!-- .fieldset -->
+		        <fieldset>
+		            <legend>Create an event</legend> <!-- .form-group -->
+		            <!-- .form-group -->
+		            <div class="form-group" data-children-count="1">
+		                <label for="lbl2">Project name <span class="badge badge-danger" data-children-count="0">Required</span></label> <input type="text" class="form-control" id="lbl2" placeholder="" name="project-name" required="">
+		            </div><!-- /.form-group -->
+		            <div class="form-group" data-children-count="1">
+		                <label for="lbl2">Region</label> <input type="text" class="form-control" id="lbl2" placeholder="" name="region" required="">
+		            </div><!-- /.form-group -->
+		            <!-- .form-group -->
+		            <div class="form-group" data-children-count="1">
+		                <label for="lbl3">Description</label>
+		                <textarea class="form-control" id="lbl3" rows="3" spellcheck="false" name="description"></textarea>
+		            </div><!-- /.form-group -->
+		            <!-- .form-group -->
+		            <div class="form-group" data-children-count="1">
+		                <label for="lbl2">Event code<span class="badge badge-danger" data-children-count="0">Required</span></label> <input type="text" class="form-control" id="lbl2" required="" name="event-code">
+		            </div><!-- /.form-group --><!-- /.form-group -->
+		            <button class="btn btn-primary btn-lg btn-block" type="submit">Create Event</button>
+		        </fieldset><!-- /.fieldset -->
+		    </form><!-- /.form -->
+		</div>
+	</div>
+</div>
+{% endblock %}

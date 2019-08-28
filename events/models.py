@@ -31,6 +31,7 @@ class Note(models.Model):
     date_created = models.DateTimeField(default=datetime.now)
     content      = models.TextField()
     author       = models.CharField(max_length=200, default="Anon")
+    owner        = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
     event        = models.ForeignKey(Event, null=True, on_delete=models.CASCADE)
     num_of_likes = models.IntegerField(default=0)
     

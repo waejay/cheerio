@@ -37,3 +37,51 @@ def join_event(request):
 
 
     return redirect('/events')
+
+@login_required
+def create_event(request):
+    
+    template = 'events/create_event.html'
+    context = locals()
+
+    return render(request, template, context)
+
+@login_required
+def submit_created_event(request):
+
+   event_to_create = Event.objects.create(name        = request.POST['project-name'],
+                                          owner       = request.user,
+                                          region      = request.POST['region'],
+                                          description = request.POST['description'],
+                                          event_code  = request.POST['event-code'],
+                                          )
+
+   event_to_create.member.add(request.user)
+
+   event_to_create.save()
+
+   return redirect('/events/')
+
+@login_required
+def create_note(request, event_id):
+
+    current_event = Event.objects.get(id=event_id)
+
+    note_to_create = Note.objects.create(first_name     = request.POST['first-name'],
+                                         last_name      = request.POST['last-name'],
+                                         content        = request.POST['content'],
+                                         event          = current_event,
+                                         owner          = request.user)
+
+    note_to_create.save()
+
+    return redirect('/events/' + str(event_id))
+
+
+def delete_note(requet, event_id, note_id):
+
+    note_to_delete = Note.objects.get(id=note_id)
+
+    note_to_delete.delete()
+
+    return redirect('/events/' + str(event_id))
